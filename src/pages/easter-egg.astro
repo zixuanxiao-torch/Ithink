@@ -1,0 +1,39 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="彩蛋 | 定晓定史书"
+  description="一页留给未来、笑容与爱的小小彩蛋。"
+  path="/easter-egg"
+>
+  <SiteHeader />
+
+  <main class="page-main">
+    <div class="container">
+      <section class="paper-panel page-hero easter-egg-hero">
+        <div class="eyebrow">彩蛋</div>
+        <h1 class="page-title">这里留着一段还没写完的话。</h1>
+        <p class="lead">
+          等你以后想好真正想说的那句话，这里会变成一封写给偶然来访者，也写给你自己的小信。
+        </p>
+      </section>
+
+      <section class="grid cards-2">
+        <article class="card easter-egg-card">
+          <h3>提示一</h3>
+          <p>笑容与爱</p>
+        </article>
+
+        <article class="card easter-egg-card">
+          <h3>提示二</h3>
+          <p>无论发生什么，希望所有人快乐。</p>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <SiteFooter />
+</Layout>
