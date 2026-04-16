@@ -1,22 +1,12 @@
 ---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import Layout from '../layouts/Layout.astro';
-import { navigation, personae } from '../data/site';
+import { personae } from '../data/site';
 ---
 
-<Layout title="人物列传 | 定晓定史书" description="幻想世界的重要人物、血脉、立场与事迹。">
-  <header class="site-header">
-    <div class="container">
-      <div class="brand">
-        <span class="brand-mark">Personae</span>
-        <strong class="brand-title">定晓定史书</strong>
-      </div>
-      <nav class="nav">
-        {navigation.map((item) => (
-          <a href={item.href}>{item.label}</a>
-        ))}
-      </nav>
-    </div>
-  </header>
+<Layout title="人物列传 | 定晓定史书" description="幻想世界的重要人物、血脉、立场与事迹。" path="/personae">
+  <SiteHeader />
 
   <main class="page-main">
     <div class="container">
@@ -33,10 +23,12 @@ import { navigation, personae } from '../data/site';
           <article class="card">
             <h3>{person.name}</h3>
             <p><strong>{person.role}</strong></p>
+            <p>{person.allegiance}</p>
             <p>{person.note}</p>
           </article>
         ))}
       </section>
     </div>
   </main>
+  <SiteFooter />
 </Layout>

@@ -1,0 +1,79 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Layout from '../layouts/Layout.astro';
+import { searchIndex } from '../data/site';
+
+const entries = JSON.stringify(searchIndex);
+---
+
+<Layout title="搜索 | 定晓定史书" description="检索人物、势力、地区与历史事件。" path="/search">
+  <SiteHeader />
+
+  <main class="page-main">
+    <div class="container">
+      <section class="paper-panel page-hero">
+        <div class="eyebrow">全站搜索</div>
+        <h1 class="page-title">先把世界写下来，再从任何一个名字开始查找它。</h1>
+        <p class="lead">
+          这一版搜索基于本地索引，已经足够检索人物、势力和历史事件。以后你内容变多了，再升级成更细的分类与标签系统。
+        </p>
+      </section>
+
+      <section class="card search-panel">
+        <label class="search-label" for="search-input">搜索关键词</label>
+        <input id="search-input" class="search-input" type="search" placeholder="例如：白鹿、灰塔、阿芙萝拉、商盟" />
+        <p class="search-note">支持标题、类型、简介和附加信息的模糊匹配。</p>
+      </section>
+
+      <section id="search-results" class="grid cards-2 search-results"></section>
+    </div>
+  </main>
+
+  <script define:vars={{ entries }} is:inline>
+    const data = JSON.parse(entries);
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+
+    function render(items) {
+      if (!results) return;
+      if (!items.length) {
+        results.innerHTML = '<article class="card"><h3>没有找到对应条目</h3><p>可以换一个人物、势力、时代名或事件名继续试试。</p></article>';
+        return;
+      }
+
+      results.innerHTML = items
+        .map(
+          (item) => `
+            <article class="card search-card">
+              <p class="search-type">${item.type}</p>
+              <h3>${item.title}</h3>
+              <p>${item.meta}</p>
+              <p>${item.body}</p>
+              <a class="button" href="${item.href}">前往相关页面</a>
+            </article>
+          `,
+        )
+        .join('');
+    }
+
+    function filter(keyword) {
+      const normalized = keyword.trim().toLowerCase();
+      if (!normalized) {
+        render(data);
+        return;
+      }
+      render(
+        data.filter((item) =>
+          [item.type, item.title, item.meta, item.body].some((value) =>
+            value.toLowerCase().includes(normalized),
+          ),
+        ),
+      );
+    }
+
+    render(data);
+    input?.addEventListener('input', (event) => filter(event.target.value));
+  </script>
+  <SiteFooter />
+</Layout>

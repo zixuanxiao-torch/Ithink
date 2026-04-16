@@ -1,0 +1,17 @@
+---
+import { navigation } from '../data/site';
+---
+
+<header class="site-header">
+  <div class="container">
+    <div class="brand">
+      <span class="brand-mark">Chronicle Of Dingxiaoding</span>
+      <strong class="brand-title">定晓定史书</strong>
+    </div>
+    <nav class="nav">
+      {navigation.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>

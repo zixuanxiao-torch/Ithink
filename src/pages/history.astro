@@ -1,30 +1,20 @@
 ---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import Layout from '../layouts/Layout.astro';
-import { navigation, timeline } from '../data/site';
+import { timeline } from '../data/site';
 ---
 
-<Layout title="编年史 | 定晓定史书" description="幻想世界的纪元、战争与王朝更替。">
-  <header class="site-header">
-    <div class="container">
-      <div class="brand">
-        <span class="brand-mark">Chronicle</span>
-        <strong class="brand-title">定晓定史书</strong>
-      </div>
-      <nav class="nav">
-        {navigation.map((item) => (
-          <a href={item.href}>{item.label}</a>
-        ))}
-      </nav>
-    </div>
-  </header>
+<Layout title="编年史 | 定晓定史书" description="幻想世界的纪元、战争与王朝更替。" path="/history">
+  <SiteHeader />
 
   <main class="page-main">
     <div class="container">
       <section class="paper-panel page-hero">
         <div class="eyebrow">编年史</div>
-        <h1 class="page-title">把零散灵感整理成可追溯的历史线。</h1>
+        <h1 class="page-title">把零散灵感整理成能推演时代的历史长线。</h1>
         <p class="lead">
-          这里适合放纪元划分、王朝更替、战争、迁徙、灾变和神话事件。后续你还可以按时代做筛选。
+          这里适合放纪元划分、王朝更替、战争、迁徙、灾变和神话事件。第二版已经预留出时代标签与事件筛选思路。
         </p>
       </section>
 
@@ -33,10 +23,12 @@ import { navigation, timeline } from '../data/site';
           <article class="timeline-item">
             <time>{item.year}</time>
             <h3>{item.title}</h3>
+            <p class="timeline-era">{item.era}</p>
             <p>{item.description}</p>
           </article>
         ))}
       </section>
     </div>
   </main>
+  <SiteFooter />
 </Layout>

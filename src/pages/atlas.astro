@@ -1,22 +1,11 @@
 ---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import Layout from '../layouts/Layout.astro';
-import { navigation } from '../data/site';
 ---
 
-<Layout title="地图与疆域 | 定晓定史书" description="幻想世界的地图、疆域、航路与区域设定。">
-  <header class="site-header">
-    <div class="container">
-      <div class="brand">
-        <span class="brand-mark">Atlas</span>
-        <strong class="brand-title">定晓定史书</strong>
-      </div>
-      <nav class="nav">
-        {navigation.map((item) => (
-          <a href={item.href}>{item.label}</a>
-        ))}
-      </nav>
-    </div>
-  </header>
+<Layout title="地图与疆域 | 定晓定史书" description="幻想世界的地图、疆域、航路与区域设定。" path="/atlas">
+  <SiteHeader />
 
   <main class="page-main">
     <div class="container">
@@ -49,4 +38,5 @@ import { navigation } from '../data/site';
       </section>
     </div>
   </main>
+  <SiteFooter />
 </Layout>

@@ -4,12 +4,15 @@ import '../styles/global.css';
 interface Props {
 	title?: string;
 	description?: string;
+	path?: string;
 }
 
 const {
 	title = '定晓定史书',
 	description = '一个记录幻想世界历史、王国、地理与人物的私有编年站。',
+	path = '/',
 } = Astro.props;
+const siteUrl = `https://dingxiaoding.top${path}`;
 ---
 
 <!doctype html>
@@ -21,10 +24,16 @@ const {
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<link rel="canonical" href={siteUrl} />
 	</head>
 	<body>
 		<div class="page-shell">
 			<slot />
 		</div>
+		<script is:inline>
+			if (window.location.hostname === 'www.dingxiaoding.top') {
+				window.location.replace(`https://dingxiaoding.top${window.location.pathname}${window.location.search}${window.location.hash}`);
+			}
+		</script>
 	</body>
 </html>

@@ -1,45 +1,41 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { featureCards, kingdoms, navigation, personae, timeline } from '../data/site';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { featureCards, kingdoms, personae, timeline } from '../data/site';
 ---
 
-<Layout title="定晓定史书" description="幻想世界设定站第一版：首页、编年史、王国、地图与人物列传。">
-	<header class="site-header">
-		<div class="container">
-			<div class="brand">
-				<span class="brand-mark">Chronicle Of Dingxiaoding</span>
-				<strong class="brand-title">定晓定史书</strong>
-			</div>
-			<nav class="nav">
-				{navigation.map((item) => (
-					<a href={item.href}>{item.label}</a>
-				))}
-			</nav>
-		</div>
-	</header>
+<Layout
+	title="定晓定史书 | dingxiaoding.top"
+	description="一部逐步生长的幻想世界设定站，收录纪年、疆域、王国、人物与隐秘关系。"
+	path="/"
+>
+	<SiteHeader />
 
 	<main>
 		<section class="hero">
 			<div class="container hero-grid">
 				<div class="paper-panel hero-copy">
-					<div class="eyebrow">私藏设定站 第一卷</div>
-					<h1>把你幻想世界里的历史、地图与人物，写成一本能长期生长的史书。</h1>
+					<div class="eyebrow">定晓定史书 第一卷</div>
+					<h1>把你脑中的王国、旧神与漫长战争，整理成一部能被翻阅的世界史。</h1>
 					<p>
-						这里不是普通博客，而是一部持续扩张的设定编年站。你可以从创世传说写到王朝更替，
-						从王国谱系写到边疆地图，再慢慢补上人物列传、宗教体系、战争档案与势力关系。
+						这里不是普通博客，而是一座私人设定档案馆。你可以从创世神话写到王朝末路，
+						从群山边疆写到远海航路，再逐步补全人物列传、地图锚点、派系关系与时代更迭。
 					</p>
 					<div class="hero-actions">
-						<a class="button primary" href="/history">先看编年史结构</a>
-						<a class="button" href="/atlas">查看地图页原型</a>
+						<a class="button primary" href="/search">进入全站检索</a>
+						<a class="button" href="/history">翻看编年史</a>
+						<a class="button" href="/relations">查看关系图</a>
 					</div>
 				</div>
 
 				<aside class="paper-panel hero-side">
 					<div class="map-card">
-						<div class="eyebrow">地图页占位</div>
-						<h2>未来可替换成你的总地图</h2>
+						<div class="eyebrow">世界总览</div>
+						<h2>这片纸面，将来可以铺开你的整张大陆地图。</h2>
 						<p class="lead">
-							第一版先放总地图图片，后面再升级成可点击地区、路线、边疆与城邦的交互地图。
+							第一版先承载设定结构，第二版已经为检索、关系图与时间线预留入口。等你开始补内容，
+							这里就能慢慢长成真正的世界观索引。
 						</p>
 						<div class="map-ornament">
 							<span></span>
@@ -53,9 +49,9 @@ import { featureCards, kingdoms, navigation, personae, timeline } from '../data/
 
 		<section class="section">
 			<div class="container">
-				<h2 class="section-title">第一版核心栏目</h2>
+				<h2 class="section-title">第二版核心结构</h2>
 				<p class="section-copy">
-					先把结构搭起来，再往里面持续填内容。这样你很快就能上线一个可访问的网站，而不是被复杂功能拖住。
+					骨架已经搭好，接下来你只需要不断往里面填设定。页面已经开始朝“世界观 wiki”靠近，而不是停留在单纯展示页。
 				</p>
 				<div class="grid cards-3">
 					{featureCards.map((card) => (
@@ -71,12 +67,13 @@ import { featureCards, kingdoms, navigation, personae, timeline } from '../data/
 		<section class="section">
 			<div class="container grid cards-2">
 				<div class="card">
-					<h3>编年史示例</h3>
+					<h3>编年史摘录</h3>
 					<div class="timeline">
 						{timeline.map((item) => (
 							<article class="timeline-item">
 								<time>{item.year}</time>
 								<h4>{item.title}</h4>
+								<p class="timeline-era">{item.era}</p>
 								<p>{item.description}</p>
 							</article>
 						))}
@@ -84,12 +81,12 @@ import { featureCards, kingdoms, navigation, personae, timeline } from '../data/
 				</div>
 
 				<div class="card">
-					<h3>条目组织建议</h3>
+					<h3>写作方式建议</h3>
 					<ul class="list">
-						<li>每个王国一页：起源、政体、领土、军制、外交。</li>
-						<li>每个重要人物一页：身份、立场、重大经历、关系网。</li>
-						<li>每场大战一页：参战方、导火索、战线变化、后果。</li>
-						<li>每个时代一页：代表事件、主导势力、社会风貌。</li>
+						<li>先把大框架写成短条目，再慢慢补充细节，不必一开始就追求完整。</li>
+						<li>同一条目尽量固定结构，后续你做搜索和筛选会轻松很多。</li>
+						<li>时间线负责建立顺序，人物页负责讲命运，关系图负责讲势力牵扯。</li>
+						<li>地图页不必一开始就交互化，先让地区和故事对应起来更重要。</li>
 					</ul>
 				</div>
 			</div>
@@ -98,29 +95,38 @@ import { featureCards, kingdoms, navigation, personae, timeline } from '../data/
 		<section class="section">
 			<div class="container grid cards-2">
 				<div class="card">
-					<h3>王国与势力样例</h3>
+					<h3>势力样例</h3>
 					<ul class="list">
 						{kingdoms.map((kingdom) => (
-							<li><strong>{kingdom.name}</strong>：{kingdom.summary}</li>
+							<li><strong>{kingdom.name}</strong>：{kingdom.summary} 主都位于 {kingdom.seat}。</li>
 						))}
 					</ul>
 				</div>
 
 				<div class="card">
-					<h3>人物列传样例</h3>
+					<h3>人物样例</h3>
 					<ul class="list">
 						{personae.map((person) => (
-							<li><strong>{person.name}</strong>，{person.role}。{person.note}</li>
+							<li><strong>{person.name}</strong>，{person.role}，活跃于 {person.allegiance}。{person.note}</li>
 						))}
 					</ul>
 				</div>
 			</div>
 		</section>
+
+		<section class="section">
+			<div class="container grid cards-2">
+				<div class="card callout-card">
+					<h3>域名已经规范到根域名</h3>
+					<p>页面会优先以 `dingxiaoding.top` 作为标准地址展示，并附带规范化链接，方便后续统一入口。</p>
+				</div>
+				<div class="card callout-card">
+					<h3>下一阶段可继续增强</h3>
+					<p>你后面可以继续加真实地图素材、分时代筛选、人物谱系图和条目之间的双向引用。</p>
+				</div>
+			</div>
+		</section>
 	</main>
 
-	<footer class="footer">
-		<div class="container">
-			定晓定史书第一版原型。接下来可以继续补搜索、时间线、关系图和真实地图素材。
-		</div>
-	</footer>
+	<SiteFooter />
 </Layout>

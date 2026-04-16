@@ -1,22 +1,12 @@
 ---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import Layout from '../layouts/Layout.astro';
-import { kingdoms, navigation } from '../data/site';
+import { kingdoms } from '../data/site';
 ---
 
-<Layout title="王国与势力 | 定晓定史书" description="幻想世界的国家、教团、商盟与组织架构。">
-  <header class="site-header">
-    <div class="container">
-      <div class="brand">
-        <span class="brand-mark">Kingdoms</span>
-        <strong class="brand-title">定晓定史书</strong>
-      </div>
-      <nav class="nav">
-        {navigation.map((item) => (
-          <a href={item.href}>{item.label}</a>
-        ))}
-      </nav>
-    </div>
-  </header>
+<Layout title="王国与势力 | 定晓定史书" description="幻想世界的国家、教团、商盟与组织架构。" path="/kingdoms">
+  <SiteHeader />
 
   <main class="page-main">
     <div class="container">
@@ -32,10 +22,12 @@ import { kingdoms, navigation } from '../data/site';
         {kingdoms.map((kingdom) => (
           <article class="card">
             <h3>{kingdom.name}</h3>
+            <p><strong>{kingdom.seat}</strong> · {kingdom.alignment}</p>
             <p>{kingdom.summary}</p>
           </article>
         ))}
       </section>
     </div>
   </main>
+  <SiteFooter />
 </Layout>

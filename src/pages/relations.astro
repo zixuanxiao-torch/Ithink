@@ -1,0 +1,66 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Layout from '../layouts/Layout.astro';
+import { relationGraph } from '../data/site';
+---
+
+<Layout title="关系图 | 定晓定史书" description="展示人物、势力、盟约与敌对关系的第二版结构。" path="/relations">
+  <SiteHeader />
+
+  <main class="page-main">
+    <div class="container">
+      <section class="paper-panel page-hero">
+        <div class="eyebrow">关系图</div>
+        <h1 class="page-title">让人物、王权与盟约之间的牵连一眼可见。</h1>
+        <p class="lead">
+          这是一版结构原型。现在先把主要节点和关系明确下来，后面可以继续升级成真正可点击、可筛选的互动图谱。
+        </p>
+      </section>
+
+      <section class="card relationship-legend">
+        <h3>图谱说明</h3>
+        <p>金色卡片代表势力，深色卡片代表人物。下方列表则把当前关系明文列出，方便你继续补设定。</p>
+      </section>
+
+      <section class="relationship-board">
+        <div class="relationship-column">
+          <h3>势力节点</h3>
+          <div class="relationship-nodes">
+            {relationGraph.nodes.filter((node) => node.type === 'kingdom').map((node) => (
+              <article class="card relation-node relation-node-kingdom">
+                <h4>{node.label}</h4>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div class="relationship-column">
+          <h3>人物节点</h3>
+          <div class="relationship-nodes">
+            {relationGraph.nodes.filter((node) => node.type === 'person').map((node) => (
+              <article class="card relation-node">
+                <h4>{node.label}</h4>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="grid cards-2">
+        {relationGraph.edges.map((edge) => {
+          const from = relationGraph.nodes.find((node) => node.id === edge.from);
+          const to = relationGraph.nodes.find((node) => node.id === edge.to);
+          return (
+            <article class="card relation-edge">
+              <h3>{from?.label} → {to?.label}</h3>
+              <p>{edge.label}</p>
+            </article>
+          );
+        })}
+      </section>
+    </div>
+  </main>
+
+  <SiteFooter />
+</Layout>
