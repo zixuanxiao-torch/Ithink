@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { navigation, personae } from '../data/site';
+---
+
+<Layout title="人物列传 | 定晓定史书" description="幻想世界的重要人物、血脉、立场与事迹。">
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <span class="brand-mark">Personae</span>
+        <strong class="brand-title">定晓定史书</strong>
+      </div>
+      <nav class="nav">
+        {navigation.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))}
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <div class="container">
+      <section class="paper-panel page-hero">
+        <div class="eyebrow">人物列传</div>
+        <h1 class="page-title">让重要人物拥有传记、立场与关系网。</h1>
+        <p class="lead">
+          后面可以继续给人物增加家族、称号、阵营、敌友关系、关键事件与结局，让设定更像真正的史书。
+        </p>
+      </section>
+
+      <section class="grid cards-3">
+        {personae.map((person) => (
+          <article class="card">
+            <h3>{person.name}</h3>
+            <p><strong>{person.role}</strong></p>
+            <p>{person.note}</p>
+          </article>
+        ))}
+      </section>
+    </div>
+  </main>
+</Layout>

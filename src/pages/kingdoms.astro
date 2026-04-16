@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { kingdoms, navigation } from '../data/site';
+---
+
+<Layout title="王国与势力 | 定晓定史书" description="幻想世界的国家、教团、商盟与组织架构。">
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <span class="brand-mark">Kingdoms</span>
+        <strong class="brand-title">定晓定史书</strong>
+      </div>
+      <nav class="nav">
+        {navigation.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))}
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <div class="container">
+      <section class="paper-panel page-hero">
+        <div class="eyebrow">王国与势力</div>
+        <h1 class="page-title">为每个政体、教团与商盟留出独立档案。</h1>
+        <p class="lead">
+          每个条目未来都能扩展出统治结构、贵族谱系、军制、外交与代表人物，逐步形成你的设定百科。
+        </p>
+      </section>
+
+      <section class="grid cards-3">
+        {kingdoms.map((kingdom) => (
+          <article class="card">
+            <h3>{kingdom.name}</h3>
+            <p>{kingdom.summary}</p>
+          </article>
+        ))}
+      </section>
+    </div>
+  </main>
+</Layout>

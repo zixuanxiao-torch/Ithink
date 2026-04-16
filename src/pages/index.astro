@@ -1,11 +1,126 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { featureCards, kingdoms, navigation, personae, timeline } from '../data/site';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="定晓定史书" description="幻想世界设定站第一版：首页、编年史、王国、地图与人物列传。">
+	<header class="site-header">
+		<div class="container">
+			<div class="brand">
+				<span class="brand-mark">Chronicle Of Dingxiaoding</span>
+				<strong class="brand-title">定晓定史书</strong>
+			</div>
+			<nav class="nav">
+				{navigation.map((item) => (
+					<a href={item.href}>{item.label}</a>
+				))}
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero">
+			<div class="container hero-grid">
+				<div class="paper-panel hero-copy">
+					<div class="eyebrow">私藏设定站 第一卷</div>
+					<h1>把你幻想世界里的历史、地图与人物，写成一本能长期生长的史书。</h1>
+					<p>
+						这里不是普通博客，而是一部持续扩张的设定编年站。你可以从创世传说写到王朝更替，
+						从王国谱系写到边疆地图，再慢慢补上人物列传、宗教体系、战争档案与势力关系。
+					</p>
+					<div class="hero-actions">
+						<a class="button primary" href="/history">先看编年史结构</a>
+						<a class="button" href="/atlas">查看地图页原型</a>
+					</div>
+				</div>
+
+				<aside class="paper-panel hero-side">
+					<div class="map-card">
+						<div class="eyebrow">地图页占位</div>
+						<h2>未来可替换成你的总地图</h2>
+						<p class="lead">
+							第一版先放总地图图片，后面再升级成可点击地区、路线、边疆与城邦的交互地图。
+						</p>
+						<div class="map-ornament">
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h2 class="section-title">第一版核心栏目</h2>
+				<p class="section-copy">
+					先把结构搭起来，再往里面持续填内容。这样你很快就能上线一个可访问的网站，而不是被复杂功能拖住。
+				</p>
+				<div class="grid cards-3">
+					{featureCards.map((card) => (
+						<article class="card">
+							<h3>{card.title}</h3>
+							<p>{card.description}</p>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container grid cards-2">
+				<div class="card">
+					<h3>编年史示例</h3>
+					<div class="timeline">
+						{timeline.map((item) => (
+							<article class="timeline-item">
+								<time>{item.year}</time>
+								<h4>{item.title}</h4>
+								<p>{item.description}</p>
+							</article>
+						))}
+					</div>
+				</div>
+
+				<div class="card">
+					<h3>条目组织建议</h3>
+					<ul class="list">
+						<li>每个王国一页：起源、政体、领土、军制、外交。</li>
+						<li>每个重要人物一页：身份、立场、重大经历、关系网。</li>
+						<li>每场大战一页：参战方、导火索、战线变化、后果。</li>
+						<li>每个时代一页：代表事件、主导势力、社会风貌。</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container grid cards-2">
+				<div class="card">
+					<h3>王国与势力样例</h3>
+					<ul class="list">
+						{kingdoms.map((kingdom) => (
+							<li><strong>{kingdom.name}</strong>：{kingdom.summary}</li>
+						))}
+					</ul>
+				</div>
+
+				<div class="card">
+					<h3>人物列传样例</h3>
+					<ul class="list">
+						{personae.map((person) => (
+							<li><strong>{person.name}</strong>，{person.role}。{person.note}</li>
+						))}
+					</ul>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer">
+		<div class="container">
+			定晓定史书第一版原型。接下来可以继续补搜索、时间线、关系图和真实地图素材。
+		</div>
+	</footer>
 </Layout>

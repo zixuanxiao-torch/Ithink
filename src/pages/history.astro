@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { navigation, timeline } from '../data/site';
+---
+
+<Layout title="编年史 | 定晓定史书" description="幻想世界的纪元、战争与王朝更替。">
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <span class="brand-mark">Chronicle</span>
+        <strong class="brand-title">定晓定史书</strong>
+      </div>
+      <nav class="nav">
+        {navigation.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))}
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <div class="container">
+      <section class="paper-panel page-hero">
+        <div class="eyebrow">编年史</div>
+        <h1 class="page-title">把零散灵感整理成可追溯的历史线。</h1>
+        <p class="lead">
+          这里适合放纪元划分、王朝更替、战争、迁徙、灾变和神话事件。后续你还可以按时代做筛选。
+        </p>
+      </section>
+
+      <section class="timeline">
+        {timeline.map((item) => (
+          <article class="timeline-item">
+            <time>{item.year}</time>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </article>
+        ))}
+      </section>
+    </div>
+  </main>
+</Layout>

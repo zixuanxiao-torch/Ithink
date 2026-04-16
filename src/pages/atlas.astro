@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { navigation } from '../data/site';
+---
+
+<Layout title="地图与疆域 | 定晓定史书" description="幻想世界的地图、疆域、航路与区域设定。">
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <span class="brand-mark">Atlas</span>
+        <strong class="brand-title">定晓定史书</strong>
+      </div>
+      <nav class="nav">
+        {navigation.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))}
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <div class="container">
+      <section class="paper-panel page-hero">
+        <div class="eyebrow">地图与疆域</div>
+        <h1 class="page-title">先有总地图，后有边疆、城邦与航路。</h1>
+        <p class="lead">
+          第一版先放总地图图片或示意图，后面再补点击区域、旅行路线、边界变化和历史疆域对比。
+        </p>
+      </section>
+
+      <section class="grid cards-2">
+        <article class="card">
+          <h3>地图页第一版建议</h3>
+          <ul class="list">
+            <li>一张总地图，展示大陆、海域、主要王国和边疆。</li>
+            <li>地图下方用卡片列出各地区简介。</li>
+            <li>先从静态图片开始，避免前期开发过重。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>后续增强方向</h3>
+          <ul class="list">
+            <li>点击地区进入独立页面。</li>
+            <li>按时代切换疆域变化。</li>
+            <li>给航线、战争路线和遗迹位置加标记。</li>
+          </ul>
+        </article>
+      </section>
+    </div>
+  </main>
+</Layout>
