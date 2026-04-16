@@ -324,6 +324,10 @@ a {
   color: var(--gold) !important;
 }
 
+.search-meta {
+  opacity: 0.82;
+}
+
 .search-results {
   align-items: start;
 }

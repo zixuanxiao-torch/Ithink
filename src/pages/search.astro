@@ -2,9 +2,9 @@
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import Layout from '../layouts/Layout.astro';
-import { searchIndex } from '../data/site';
+import { pageSearchIndex, searchIndex } from '../data/site';
 
-const entries = JSON.stringify(searchIndex);
+const entries = JSON.stringify([...pageSearchIndex, ...searchIndex]);
 ---
 
 <Layout title="搜索 | 定晓定史书" description="检索人物、势力、地区与历史事件。" path="/search">
@@ -16,14 +16,14 @@ const entries = JSON.stringify(searchIndex);
         <div class="eyebrow">全站搜索</div>
         <h1 class="page-title">先把世界写下来，再从任何一个名字开始查找它。</h1>
         <p class="lead">
-          这一版搜索基于本地索引，已经足够检索人物、势力和历史事件。以后你内容变多了，再升级成更细的分类与标签系统。
+          这一版搜索已经覆盖页面说明文案、人物、势力和历史事件。以后你内容变多了，再升级成更细的标签与正文分段检索。
         </p>
       </section>
 
       <section class="card search-panel">
         <label class="search-label" for="search-input">搜索关键词</label>
         <input id="search-input" class="search-input" type="search" placeholder="例如：白鹿、灰塔、阿芙萝拉、商盟" />
-        <p class="search-note">支持标题、类型、简介和附加信息的模糊匹配。</p>
+        <p class="search-note">支持标题、类型、页面说明、简介和附加信息的模糊匹配。</p>
       </section>
 
       <section id="search-results" class="grid cards-2 search-results"></section>
@@ -48,7 +48,7 @@ const entries = JSON.stringify(searchIndex);
             <article class="card search-card">
               <p class="search-type">${item.type}</p>
               <h3>${item.title}</h3>
-              <p>${item.meta}</p>
+              <p class="search-meta">${item.meta}</p>
               <p>${item.body}</p>
               <a class="button" href="${item.href}">前往相关页面</a>
             </article>
