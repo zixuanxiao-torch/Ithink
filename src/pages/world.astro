@@ -1,0 +1,117 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Layout from '../layouts/Layout.astro';
+import { academyOverview, immortalityOrder, tournaments, worldBasics } from '../data/site';
+---
+
+<Layout
+  title="世界总览 | 定晓定史书"
+  description="剑与魔法并存、枪械与载具发展，沙漠带分隔南北：统一帝国与万国联盟长期对峙。"
+  path="/world"
+>
+  <SiteHeader />
+
+  <main class="page-main">
+    <div class="container">
+      <section class="paper-panel page-hero">
+        <div class="eyebrow">世界总览</div>
+        <h1 class="page-title">一块大陆，两种秩序。</h1>
+        <p class="lead">
+          这是一个剑与魔法并存、同时也拥有枪械与载具的世界。魔法让许多现代高科技变得“不必”，
+          但也因为并非人人有天赋或执着于物理法则，工程与武备依然沿另一条路线发展得相当出色。
+        </p>
+      </section>
+
+      <section class="grid cards-2">
+        <article class="card">
+          <h3>技术与力量生态</h3>
+          <p>{worldBasics.techLevel}</p>
+          <p>
+            因魔法的存在，刀剑依旧强大；因技术的存在，力量也可能被“工程化”与“平权化”。这两条路线互相借力，也互相冲突。
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>地理与格局</h3>
+          <p>{worldBasics.geography}</p>
+          <p>
+            沙海不止是地理障碍，更是政治与文明的分界线：北方统一，南方复杂；北方以国家整合，南方以资格秩序维系。
+          </p>
+        </article>
+      </section>
+
+      <section class="grid cards-2">
+        <article class="card">
+          <h3>北方：统一帝国</h3>
+          <p>{worldBasics.north}</p>
+          <p>
+            帝国将诸组织纳入中央框架。王权、军势与机构共同构成垂直秩序，在长期对峙中更显凝聚。
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>南方：万国联盟与学院</h3>
+          <p>{worldBasics.south}</p>
+          <p>
+            学院名义上是学校，实际上是南方资格体系的核心入口：培养、认证、许可与军衔，使“共主”并非一句空话。
+          </p>
+        </article>
+      </section>
+
+      <section class="card">
+        <h3>学院为何能成为“南方天下共主”</h3>
+        <p>{academyOverview.origin}</p>
+        <p>{academyOverview.legitimacy}</p>
+        <p>
+          入学统一试炼残酷而公平，几乎所有南方孩子都渴望踏入学院。未入者亦有道路：宗派、地方军政、雇佣兵与地下世界，
+          乃至地方分院/预备体系。南方的社会结构因此形成一张复杂却可运转的网。
+        </p>
+        <ul class="list">
+          {academyOverview.certifications.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="grid cards-2">
+        <article class="card">
+          <h3>四年四会：公开的筛选与命运改写</h3>
+          <p>
+            南北各自拥有一套盛会节律。南方尤其重视武会——它既是热闹的擂台，也是制度化的筛选：把门派、军政、学院与地下世界
+            拉进同一条公开秩序。
+          </p>
+          <ul class="list">
+            {tournaments.map((t) => (
+              <li>
+                <strong>第 {t.year} 年 · {t.title}</strong>：{t.reward}
+              </li>
+            ))}
+          </ul>
+          <a class="button" href="/tournaments">查看四年四会条目</a>
+        </article>
+
+        <article class="card">
+          <h3>名榜暗榜：常量与变量</h3>
+          <p>
+            明榜前十为远古时代遗存的“十大强者”，如同时代的常量；暗榜则记录变数——那些会让格局发生偏移的人。
+          </p>
+          <p>
+            暗榜第一“枭”是百年前崛起的异数，既危险也必要：他常在世界级场合担任枢纽，像主持人一样让各方在同一张桌上说话。
+          </p>
+          <a class="button" href="/rankings">查看名榜暗榜条目</a>
+        </article>
+      </section>
+
+      <section class="card">
+        <h3>永生秩序：罕见神迹，不是世界的主线</h3>
+        <p>{immortalityOrder.summary}</p>
+        <p>{immortalityOrder.rule}</p>
+        <p>{immortalityOrder.council}</p>
+        <a class="button" href="/immortality">查看永生与评议会条目</a>
+      </section>
+    </div>
+  </main>
+
+  <SiteFooter />
+</Layout>

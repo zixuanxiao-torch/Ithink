@@ -1,0 +1,52 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Layout from '../layouts/Layout.astro';
+import { tournaments } from '../data/site';
+---
+
+<Layout
+  title="四年四会 | 定晓定史书"
+  description="四年一轮的盛会节律：门派、军政、学院与地下世界都在其中争取名分与机缘。"
+  path="/tournaments"
+>
+  <SiteHeader />
+
+  <main class="page-main">
+    <div class="container">
+      <section class="paper-panel page-hero">
+        <div class="eyebrow">盛会</div>
+        <h1 class="page-title">四年四会：公开的筛选，也是时代的仪式。</h1>
+        <p class="lead">
+          南北对峙使双方内部更趋团结，盛会则成为秩序的节律。南方的四会由学院与校联合部门主导，
+          以公开竞争连接门派、各国、军伍与地下世界——把“争夺”变成“争取”。
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>规则概览</h3>
+        <ul class="list">
+          <li>四年一轮，每年一会。</li>
+          <li>部分赛事“一生一次”，不限势力，名分重于赌斗。</li>
+          <li>胜者获得指导、资源与制度入口；前列者亦会被记名与照拂。</li>
+        </ul>
+      </section>
+
+      <section class="timeline">
+        {tournaments.map((t) => (
+          <article class="timeline-item">
+            <time>第 {t.year} 年</time>
+            <h3>{t.title}</h3>
+            <p class="timeline-era">
+              {t.onceInLife ? '一生一次' : '可多次参与'} · {t.eligibility}
+            </p>
+            <p><strong>奖励</strong>：{t.reward}</p>
+            <p><strong>说明</strong>：{t.note}</p>
+          </article>
+        ))}
+      </section>
+    </div>
+  </main>
+
+  <SiteFooter />
+</Layout>

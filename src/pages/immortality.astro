@@ -1,0 +1,52 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Layout from '../layouts/Layout.astro';
+import { immortalityOrder } from '../data/site';
+---
+
+<Layout
+  title="永生与评议会 | 定晓定史书"
+  description="永生名额的公共秩序：由十大强者与顶尖人物共同裁定，民间多以信仰态度看待。"
+  path="/immortality"
+>
+  <SiteHeader />
+
+  <main class="page-main">
+    <div class="container">
+      <section class="paper-panel page-hero">
+        <div class="eyebrow">永生秩序</div>
+        <h1 class="page-title">罕见神迹，不是世界的主线。</h1>
+        <p class="lead">
+          永生并非全民竞逐的奖品：名额太少，普通民众甚至不知其机制，只将永生者视作尊贵的时代象征与信仰对象。
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>概述</h3>
+        <p>{immortalityOrder.summary}</p>
+        <p>{immortalityOrder.rule}</p>
+        <p>{immortalityOrder.council}</p>
+      </section>
+
+      <section class="grid cards-2">
+        <article class="card">
+          <h3>为什么“没有争抢，只有争取”</h3>
+          <p>
+            因为归属由世界级权威共同管理：十大强者与少数顶尖席位形成稳定的裁定机制，程序与威望压过一切短期冲突。
+            对多数人而言，永生更像天象，不像可以被讨价还价的资源。
+          </p>
+        </article>
+        <article class="card">
+          <h3>与时代运行的关系</h3>
+          <p>
+            永生者的存在不会改变世界的日常运作。真正推动历史的，依旧是帝国与联盟的制度、学院的资格秩序、武会的上升通道，
+            以及魔法与技术的互相拉扯。
+          </p>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <SiteFooter />
+</Layout>

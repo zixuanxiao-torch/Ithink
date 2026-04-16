@@ -1,0 +1,77 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Layout from '../layouts/Layout.astro';
+import { academyOverview } from '../data/site';
+---
+
+<Layout
+  title="学院与四大学院 | 定晓定史书"
+  description="南方万国联盟的资格中枢：统一试炼、军衔认证、禁术许可，以及四大学院的合作与竞争。"
+  path="/academy"
+>
+  <SiteHeader />
+
+  <main class="page-main">
+    <div class="container">
+      <section class="paper-panel page-hero">
+        <div class="eyebrow">学院体系</div>
+        <h1 class="page-title">名为学校，实为资格中枢。</h1>
+        <p class="lead">
+          学院最初凭创始人之力立足，后来凭“培养”成为南方最稳的秩序入口。它不需要在法条上直接统治诸国，
+          但它决定了军衔、禁术与精英阶层的进入方式。
+        </p>
+      </section>
+
+      <section class="grid cards-2">
+        <article class="card">
+          <h3>起源</h3>
+          <p>{academyOverview.origin}</p>
+          <p>{academyOverview.legitimacy}</p>
+        </article>
+
+        <article class="card">
+          <h3>统一试炼</h3>
+          <p>{academyOverview.admissions}</p>
+          <p>
+            统一试炼的意义不止是选强者，更是制造共识：谁通过试炼，谁就获得“被承认的未来”。失败并不等于终结，
+            但道路会从此分岔。
+          </p>
+        </article>
+      </section>
+
+      <section class="card">
+        <h3>学院认证覆盖</h3>
+        <ul class="list">
+          {academyOverview.certifications.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+        <p>
+          学院越是保持“名义上的不直接任用”，它的资格秩序就越像空气：你看不见它，但每个人都在依它呼吸。
+        </p>
+      </section>
+
+      <section class="grid cards-2">
+        <article class="card">
+          <h3>未入学院者的主要去向</h3>
+          <p>{academyOverview.whoDidNotEnter}</p>
+        </article>
+
+        <article class="card">
+          <h3>四大学院</h3>
+          <p>四大学院同属一校：合作中竞争，竞争中合作。</p>
+          <ul class="list">
+            {academyOverview.colleges.map((c) => (
+              <li>
+                <strong>{c.name}</strong>：{c.note}
+              </li>
+            ))}
+          </ul>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <SiteFooter />
+</Layout>

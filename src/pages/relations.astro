@@ -20,14 +20,17 @@ import { relationGraph } from '../data/site';
 
       <section class="card relationship-legend">
         <h3>图谱说明</h3>
-        <p>金色卡片代表势力，深色卡片代表人物。下方列表则把当前关系明文列出，方便你继续补设定。</p>
+        <p>
+          这里展示的是“制度与时代节点”的关系图：帝国、万国联盟、学院体系、盛会节律、名榜暗榜与永生评议会。
+          你后续补充王国、宗派与人物关系后，这张图会逐步长成真正的世界观图谱。
+        </p>
       </section>
 
       <section class="relationship-board">
         <div class="relationship-column">
-          <h3>势力节点</h3>
+          <h3>制度/势力节点</h3>
           <div class="relationship-nodes">
-            {relationGraph.nodes.filter((node) => node.type === 'kingdom').map((node) => (
+            {relationGraph.nodes.filter((node) => node.type !== 'person').map((node) => (
               <article class="card relation-node relation-node-kingdom">
                 <h4>{node.label}</h4>
               </article>

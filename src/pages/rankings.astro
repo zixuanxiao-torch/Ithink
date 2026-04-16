@@ -1,0 +1,56 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Layout from '../layouts/Layout.astro';
+import { rankings } from '../data/site';
+---
+
+<Layout
+  title="名榜与暗榜 | 定晓定史书"
+  description="明榜前十为远古时代遗存的十大强者，暗榜记录时代的变量与不可控者。"
+  path="/rankings"
+>
+  <SiteHeader />
+
+  <main class="page-main">
+    <div class="container">
+      <section class="paper-panel page-hero">
+        <div class="eyebrow">名榜暗榜</div>
+        <h1 class="page-title">明榜是常量，暗榜是变量。</h1>
+        <p class="lead">
+          明榜前十来自极久远的时代，数万年岁月后几乎无人能望其项背。暗榜则记录另一类力量：无法被彻底收编，却会改变局势走向的人。
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>明榜 · 十大强者</h3>
+        <div class="grid cards-2">
+          {rankings.brightTop10.map((p) => (
+            <article class="card">
+              <p class="search-type">明榜第 {p.rank}</p>
+              <h3>{p.name}</h3>
+              <p>{p.side} · {p.gender} · {p.title}</p>
+              <p>{p.note}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>暗榜 · 记录变数</h3>
+        <div class="grid cards-2">
+          {rankings.dark.map((p) => (
+            <article class="card">
+              <p class="search-type">暗榜第 {p.rank}</p>
+              <h3>{p.name}</h3>
+              <p>{p.side} · {p.weapon} · {p.style}</p>
+              <p>{p.note}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <SiteFooter />
+</Layout>
